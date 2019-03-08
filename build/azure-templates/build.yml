@@ -4,7 +4,7 @@ steps:
   displayName: 'Cake build'
   inputs:
     targetType: ./
-    filePath: build/build.ps1
+    filePath: $(System.DefaultWorkingDirectory)/build/build.ps1
 
 - task: VSTest@2
   displayName: 'VsTest - testAssemblies'
