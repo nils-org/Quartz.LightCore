@@ -1,10 +1,10 @@
 steps:
 
-- task: PowerShell@2
+- task: PowerShell@3
   displayName: 'Cake build'
   inputs:
-    targetType: ./
-    filePath: '$(System.DefaultWorkingDirectory)\build\build.ps1'
+    scriptType: 'FilePath'
+    scriptPath: 'build\build.ps1'
 
 - task: VSTest@2
   displayName: 'VsTest - testAssemblies'
