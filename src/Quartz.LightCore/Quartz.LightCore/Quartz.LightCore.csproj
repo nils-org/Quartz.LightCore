@@ -13,7 +13,7 @@
     <Authors>Nils Andresen</Authors>
     <Description>A simple binding for using LightCore in Quartz.Net</Description>
     <Copyright>Nils Andresen, 2019</Copyright>
-    <PackageLicenseUrl>https://github.com/nils-a/Quartz.LightCore/blob/master/License.txt</PackageLicenseUrl>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/nils-a/Quartz.LightCore</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nils-a/Quartz.LightCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
