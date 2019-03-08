@@ -14,6 +14,7 @@ var configuration = Argument("configuration", "Release");
 var rootDir = Directory("..");
 var srcDir = rootDir + Directory("src");
 var binDir = rootDir + Directory("bin");
+var distDir = rootDir + Directory("dist");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -23,6 +24,7 @@ Task("Clean")
     .Does(() =>
 {
     CleanDirectory(binDir);
+    CleanDirectory(distDir);
 });
 
 
@@ -41,13 +43,21 @@ Task("Build")
     }
 });
 
+Task("Dist")
+    .IsDependentOn("Build")
+    .Does(() => 
+{
+    var files = GetFiles(binDir.ToString() + "/**/*.nupkg");
+    CopyFiles(files, distDir);
+});
+
 
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Build");
+    .IsDependentOn("Dist");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
