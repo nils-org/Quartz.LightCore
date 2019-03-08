@@ -1,6 +1,6 @@
 steps:
 
-- task: PowerShell@3
+- task: PowerShell@2
   displayName: 'Cake build'
   inputs:
     scriptType: 'FilePath'
