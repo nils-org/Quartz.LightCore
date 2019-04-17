@@ -9,7 +9,7 @@
     <OutputPath>..\..\..\bin\</OutputPath>
     <DocumentationFile>..\..\..\bin\Quartz.LightCore.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.1.0</Version>
+    <Version>0.0.2.0</Version>
     <Authors>Nils Andresen</Authors>
     <Description>A simple binding for using LightCore in Quartz.Net</Description>
     <Copyright>Nils Andresen, 2019</Copyright>
@@ -17,6 +17,8 @@
     <PackageProjectUrl>https://github.com/nils-a/Quartz.LightCore</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nils-a/Quartz.LightCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>0.0.2.0</AssemblyVersion>
+    <FileVersion>0.0.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">

@@ -1,0 +1,16 @@
+steps:
+
+- task: PowerShell@2
+  displayName: 'Cake build'
+  inputs:
+    filePath: 'build\build.ps1'
+
+- task: VSTest@2
+  displayName: 'VsTest - testAssemblies'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)\dist'
+    ArtifactName: $(Build.Repository.Name)  
+    
