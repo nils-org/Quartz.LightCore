@@ -2,6 +2,7 @@
 using Quartz.Spi;
 using System;
 using System.Globalization;
+using System.Text;
 
 namespace Quartz.LightCore
 {
@@ -25,10 +26,30 @@ namespace Quartz.LightCore
             {
                 return (IJob)container.Resolve(bundle.JobDetail.JobType);
             }
+            catch (ResolutionFailedException resFailed)
+            {
+                var sb = new StringBuilder();
+                sb.Append(string.Format(CultureInfo.InvariantCulture,
+                    "{0} Failed to construct type '{1}'. ", typeof(LightCoreResolverJobFactory).Name, resFailed.ImplementationType.FullName));
+
+                if (resFailed.InnerException == null)
+                {
+                    sb.AppendLine("Probably the type or a dependency was not registered.");
+                }
+                else
+                {
+                    sb.AppendLine(string.Format(CultureInfo.InvariantCulture,
+                        "The last error was: {0}: {1}", resFailed.InnerException.GetType().Name, resFailed.InnerException.Message));
+                }
+                throw new SchedulerException(sb.ToString(), resFailed);
+
+            }
             catch (Exception e)
             {
                 throw new SchedulerException(
-                    string.Format(CultureInfo.InvariantCulture, "Problem while instantiating job '{0}' from the NinjectJobFactory.", bundle.JobDetail.Key), e);
+                    string.Format(CultureInfo.InvariantCulture,
+                    "Problem while instantiating job '{0}' from the {1}.",
+                    bundle.JobDetail.Key, typeof(LightCoreResolverJobFactory).Name), e);
             }
         }
 
