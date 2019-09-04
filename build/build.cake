@@ -1,4 +1,4 @@
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
+#tool "nuget:?package=NUnit.ConsoleRunner&version=3.10.0"
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
@@ -29,18 +29,29 @@ Task("Clean")
 
 
 Task("Build")
-    .IsDependentOn("Clean")
     .Does(() =>
 {
     foreach(var f in new[] {
         srcDir + File("Quartz.LightCore/Quartz.LightCore.sln")
     }) {
-        //NuGetRestore(f);
+        NuGetRestore(f);
         MSBuild(f, settings => {
             settings.SetConfiguration(configuration);
             settings.Restore = true;
         });
     }
+});
+
+Task("Test")
+    .IsDependentOn("Build")
+    .Does(() => 
+{
+    var testAssemblies = GetFiles(srcDir + File("**/bin/**/*.Tests.dll"));
+    Information($"running tests on {testAssemblies.Count} test-assemblies");
+    NUnit3(testAssemblies, new NUnit3Settings 
+    {
+        Results = new[] { new NUnit3Result { FileName = (binDir + File("TestResult.xml")).ToString() } },
+    });
 });
 
 Task("Dist")
@@ -51,13 +62,31 @@ Task("Dist")
     CopyFiles(files, distDir);
 });
 
+Task("PublishAppVeyor")
+    .WithCriteria(() => AppVeyor.IsRunningOnAppVeyor)
+    .IsDependentOn("Dist")
+    .Does(() => 
+{
+    foreach(var file in GetFiles(distDir + File("**/*")))
+    {
+        AppVeyor.UploadArtifact(file);
+    }
+});
+
 
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
+    .IsDependentOn("Clean")
+    .IsDependentOn("Build")
+    .IsDependentOn("Test")
     .IsDependentOn("Dist");
+
+Task("AppVeyor")
+    .IsDependentOn("Default")
+    .IsDependentOn("PublishAppVeyor");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
