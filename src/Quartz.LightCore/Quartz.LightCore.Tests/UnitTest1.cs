@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using LightCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Quartz.Impl;
 using System;
 using System.Threading;
@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Quartz.LightCore.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest1
     {
-        [TestMethod]
+        [TestCase]
         public async Task TestMethod1()
         {
             // Arrange
@@ -24,7 +24,6 @@ namespace Quartz.LightCore.Tests
                 return new FakeJob(() => jobWasRun = true);
             });
             var container = builder.Build();
-
 
             var scheduler = await new StdSchedulerFactory().GetScheduler().UseLightCoreResolverJobFacotry(container);
             await scheduler.ScheduleJob(
@@ -41,7 +40,6 @@ namespace Quartz.LightCore.Tests
             }
             diWasCalled.Should().BeTrue();
         }
-
 
         private class FakeJob : IJob
         {
