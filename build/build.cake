@@ -47,7 +47,7 @@ Task("Build")
     .Does(() =>
 {
     foreach(var f in new[] {
-        srcDir + File("Quartz.LightCore/Quartz.LightCore.sln")
+        srcDir + File("Quartz.LightCore.sln")
     }) {
         NuGetRestore(f);
         MSBuild(f, settings => {
@@ -109,9 +109,9 @@ Task("PublishDocumentation")
 
     var currentBranch = GitBranchCurrent(rootDir);
     Information("Current branch is: " + currentBranch.FriendlyName);
-    if(currentBranch.FriendlyName != "master")
+    if(currentBranch.FriendlyName != "main")
     {
-        Warning("Not building on master. Skipping publish of docs.");
+        Warning("Not building on main. Skipping publish of docs.");
         return;
     }
 
@@ -179,6 +179,7 @@ Task("preview")
 {
     var previewSettings = wyamSettings;
     previewSettings.Preview = true;
+    previewSettings.Watch = true;
     Wyam(previewSettings);
 });
 

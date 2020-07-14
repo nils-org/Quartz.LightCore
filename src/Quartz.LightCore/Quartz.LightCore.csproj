@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <OutputPath>..\..\..\bin\</OutputPath>
-    <DocumentationFile>..\..\..\bin\Quartz.LightCore.xml</DocumentationFile>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DocumentationFile>..\..\bin\Quartz.LightCore.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
     <StartYear>2019</StartYear>
