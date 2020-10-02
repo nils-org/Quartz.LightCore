@@ -22,6 +22,7 @@
     <PackageReleaseNotes>https://github.com/nils-org/Quartz.LightCore/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/nils-org/Quartz.LightCore.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageIcon>Logo.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2'">
     <DefineConstants>NETSTANDARD</DefineConstants>
@@ -29,6 +30,9 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net461'">
     <DefineConstants>NETFRAMEWORK</DefineConstants>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\res\Logo-256.png" Link="Logo.png" Pack="true" PackagePath="Logo.png" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LightCore" Version="1.5.1" />
     <PackageReference Include="Quartz" Version="3.2.0" />
