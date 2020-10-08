@@ -1,13 +1,18 @@
-﻿using FluentAssertions;
-using LightCore;
-using NUnit.Framework;
-using Quartz.Impl;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Quartz.LightCore.Tests
+﻿namespace Quartz.LightCore.Tests
 {
+    using FluentAssertions;
+
+    using global::LightCore;
+
+    using NUnit.Framework;
+
+    // ReSharper disable once RedundantNameQualifier - collides with SA1135
+    using Quartz.Impl;
+
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     [TestFixture]
     public class UnitTest1
     {
@@ -32,6 +37,37 @@ namespace Quartz.LightCore.Tests
 
             // Act
             await scheduler.Start();
+
+            // Assert
+            while (!jobWasRun)
+            {
+                Thread.Sleep(10);
+            }
+            diWasCalled.Should().BeTrue();
+        }
+
+        [TestCase]
+        public void SyncTestMethod1()
+
+        {
+            // Arrange
+            var diWasCalled = false;
+            var jobWasRun = false;
+            var builder = new ContainerBuilder();
+            builder.Register(x =>
+            {
+                diWasCalled = true;
+                return new FakeJob(() => jobWasRun = true);
+            });
+            var container = builder.Build();
+
+            var scheduler = new StdSchedulerFactory().GetScheduler().GetAwaiter().GetResult().UseLightCoreResolverJobFacotry(container);
+            scheduler.ScheduleJob(
+                JobBuilder.Create<FakeJob>().Build(),
+                TriggerBuilder.Create().StartNow().Build()).GetAwaiter().GetResult();
+
+            // Act
+            scheduler.Start().GetAwaiter().GetResult();
 
             // Assert
             while (!jobWasRun)
