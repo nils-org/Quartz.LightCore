@@ -5,7 +5,7 @@
 
 > [LightCore](https://github.com/JuergenGutsch/LightCore) bindings for [Quartz.Net](https://www.quartz-scheduler.net/)
 
-
+![logo](res/Logo-72.png)
 
 ## Howto
 
