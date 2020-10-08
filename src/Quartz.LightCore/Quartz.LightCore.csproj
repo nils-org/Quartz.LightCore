@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <PackageId>Quartz.LightCore</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <StartYear>2019</StartYear>
+    <EndYear>$([System.DateTime]::Today.Year)</EndYear>
+    <FullYear Condition="'$(StartYear)'=='$(EndYear)'">$(StartYear)</FullYear>
+    <FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
+    <Version>0.0.2.0</Version>
+    <Authors>Nils Andresen</Authors>
+    <Description>A simple binding for using LightCore in Quartz.Net</Description>
+    <Copyright>Copyright © $(FullYear) — Nils Andresen</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/nils-org/Quartz.LightCore</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/nils-org/Quartz.LightCore/releases</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/nils-org/Quartz.LightCore.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageIconUrl>https://cdn.jsdelivr.net/gh/nils-org/Quartz.LightCore@develop/res/Logo-256.png</PackageIconUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2'">
+    <DefineConstants>NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net461'">
+    <DefineConstants>NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="$(SolutionDir)/stylecop.json" Link="stylecop.json" />
+    <None Include="$(SolutionDir)/.editorconfig" Link=".editorconfig" />
+    <None Include="../../res/Logo-256.png" Link="Logo.png" Pack="true" PackagePath="Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="LightCore" Version="1.5.1" />
+    <PackageReference Include="Quartz" Version="3.2.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

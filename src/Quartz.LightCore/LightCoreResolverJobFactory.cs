@@ -1,17 +1,21 @@
-﻿// inspired by https://knightcodes.com/.net/2016/08/15/dependency-injection-for-quartz-net.html
-namespace Quartz.LightCore
+﻿namespace Quartz.LightCore
 {
     using System;
     using System.Globalization;
     using System.Text;
+
     using global::LightCore;
+
+    // ReSharper disable once RedundantNameQualifier - collides with SA1135
     using Quartz.Spi;
+
+    // inspired by https://knightcodes.com/.net/2016/08/15/dependency-injection-for-quartz-net.html
 
     /// <summary>
     /// The ResolverFactory for Quartz.Net. Used internally.
     /// Configure Quartz.Net to use this factory using the <see cref="SchedulerExtension"/>.
     /// </summary>
-    /// <seealso cref="Quartz.Spi.IJobFactory" />
+    /// <seealso cref="IJobFactory" />
     internal class LightCoreResolverJobFactory : IJobFactory
     {
         private readonly IContainer container;
@@ -36,12 +40,12 @@ namespace Quartz.LightCore
         /// </returns>
         /// <exception cref="ArgumentNullException">If bundle is null.</exception>
         /// <exception cref="SchedulerException">
-        /// Either, on failed reolutions (in this case the inner exception will be a <see cref="ResolutionFailedException"/>
-        /// or on instanciation-exceptions (in this case the inner exception will be something different).
+        /// Either, on failed resolutions (in this case the inner exception will be a <see cref="ResolutionFailedException"/>
+        /// or on instantiation-exceptions (in this case the inner exception will be something different).
         /// </exception>
         /// <remarks>
         /// It should be extremely rare for this method to throw an exception -
-        /// basically only the case where there is no way at all to reolve or instantiate
+        /// basically only the case where there is no way at all to resolve or instantiate
         /// and prepare the Job for execution.  When the exception is thrown, the
         /// Scheduler will move all triggers associated with the Job into the
         /// <see cref="F:Quartz.TriggerState.Error" /> state, which will require human
@@ -53,7 +57,7 @@ namespace Quartz.LightCore
         {
             if (bundle == null)
             {
-                throw new ArgumentNullException("bundle");
+                throw new ArgumentNullException(nameof(bundle));
             }
 
             try
@@ -66,7 +70,7 @@ namespace Quartz.LightCore
                 sb.Append(string.Format(
                     CultureInfo.InvariantCulture,
                     "{0} Failed to construct type '{1}'. ",
-                    typeof(LightCoreResolverJobFactory).Name,
+                    nameof(LightCoreResolverJobFactory),
                     resFailed.ImplementationType.FullName));
 
                 if (resFailed.InnerException == null)
@@ -91,7 +95,7 @@ namespace Quartz.LightCore
                         CultureInfo.InvariantCulture,
                         "Problem while instantiating job '{0}' from the {1}.",
                         bundle.JobDetail.Key,
-                        typeof(LightCoreResolverJobFactory).Name), e);
+                        nameof(LightCoreResolverJobFactory)), e);
             }
         }
 
@@ -102,6 +106,7 @@ namespace Quartz.LightCore
         public void ReturnJob(IJob job)
         {
             // see https://stackoverflow.com/questions/20587433/whats-the-purpose-of-returnjob-in-ijobfactory-interface-for-quartz-net
+            // ReSharper disable once SuspiciousTypeConversion.Global
             (job as IDisposable)?.Dispose();
         }
     }

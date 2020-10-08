@@ -5,7 +5,7 @@
 
 > [LightCore](https://github.com/JuergenGutsch/LightCore) bindings for [Quartz.Net](https://www.quartz-scheduler.net/)
 
-
+![logo](res/Logo-72.png)
 
 ## Howto
 
@@ -24,7 +24,7 @@ scheduler.ScheduleJob(
 
 See [full documentation](https://nils-org.github.io/Quartz.LightCore/) for more
 
-[appveyor]: https://ci.appveyor.com/project/nils-a/quartz-lightcore
-[appveyorimage]: https://img.shields.io/appveyor/ci/nils-a/quartz-lightcore.svg?logo=appveyor&style=flat-square
+[appveyor]: https://ci.appveyor.com/project/nils-org/quartz-lightcore
+[appveyorimage]: https://img.shields.io/appveyor/ci/nils-org/quartz-lightcore.svg?logo=appveyor&style=flat-square
 [nuget]: https://nuget.org/packages/Quartz.LightCore
 [nugetimage]: https://img.shields.io/nuget/v/Quartz.LightCore.svg?logo=nuget&style=flat-square
