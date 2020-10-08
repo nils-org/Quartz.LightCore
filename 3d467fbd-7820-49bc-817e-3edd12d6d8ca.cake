@@ -1,1 +1,0 @@
-#tool nuget:?package=OpenCover&version=4.7.922

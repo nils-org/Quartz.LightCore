@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <PackageId>Quartz.LightCore</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -19,6 +20,7 @@
     <RepositoryUrl>https://github.com/nils-org/Quartz.LightCore.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>Logo.png</PackageIcon>
+    <PackageIconUrl>https://cdn.jsdelivr.net/gh/nils-org/Quartz.LightCore@develop/res/Logo-256.png</PackageIconUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2'">
     <DefineConstants>NETSTANDARD</DefineConstants>
@@ -27,7 +29,9 @@
     <DefineConstants>NETFRAMEWORK</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\..\res\Logo-256.png" Link="Logo.png" Pack="true" PackagePath="Logo.png" />
+    <AdditionalFiles Include="$(SolutionDir)/stylecop.json" Link="stylecop.json" />
+    <None Include="$(SolutionDir)/.editorconfig" Link=".editorconfig" />
+    <None Include="../../res/Logo-256.png" Link="Logo.png" Pack="true" PackagePath="Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LightCore" Version="1.5.1" />
