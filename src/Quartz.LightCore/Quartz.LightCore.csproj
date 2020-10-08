@@ -10,8 +10,6 @@
     <FullYear Condition="'$(StartYear)'=='$(EndYear)'">$(StartYear)</FullYear>
     <FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
     <Version>0.0.2.0</Version>
-    <AssemblyVersion>0.0.2.0</AssemblyVersion>
-    <FileVersion>0.0.2.0</FileVersion>
     <Authors>Nils Andresen</Authors>
     <Description>A simple binding for using LightCore in Quartz.Net</Description>
     <Copyright>Copyright © $(FullYear) — Nils Andresen</Copyright>
