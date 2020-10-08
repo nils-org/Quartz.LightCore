@@ -17,7 +17,7 @@
     <Authors>Nils Andresen</Authors>
     <Description>A simple binding for using LightCore in Quartz.Net</Description>
     <Copyright>Copyright © $(FullYear) — Nils Andresen</Copyright>
-    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/nils-org/Quartz.LightCore</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/nils-org/Quartz.LightCore/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/nils-org/Quartz.LightCore.git</RepositoryUrl>
