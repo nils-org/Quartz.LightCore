@@ -1,7 +1,0 @@
-#recipe Docs
-
-// Customize your settings and add new ones here
-//Settings[Keys.Host] = "host.com";
-Settings[DocsKeys.Title] = "Quartz.LightCore";
-
-// Add any pipeline customizations here

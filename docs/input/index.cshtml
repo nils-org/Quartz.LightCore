@@ -1,0 +1,80 @@
+---
+Title: Quartz.LightCore
+NoSidebar: true
+NoContainer: true
+NoGutter: true
+---
+<script>
+if(!document.location.href.endsWith("/")){
+  document.location.href = document.location.href + "/"; // or else the relative hyperlinks won't work...
+}
+</script>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="logo-border"><img src="./res/Logo.svg" class="img-responsive" alt="logo"></div>
+            </div>
+            <div class="col-sm-10">
+            <h1 class="display-4">Quartz.LightCore</h1>
+            <p>
+                Quartz.LightCore is a binding to use <a href="https://github.com/JuergenGutsch/LightCore">LightCore</a> 
+                as DI container when using <a href="https://www.quartz-scheduler.net/">Quartz.NET</a>.
+            </p>
+            </div>
+        </div>
+        <div class="row btn-row">
+            <a class="btn btn-primary btn-lg" href="api" role="button">Learn more</a>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    <div class="row slideanim">
+        <div class="col-sm-6 col-sm-offset-3">
+            <span class="glyphicon glyphicon-heart logo-small"></span>
+            <h3 class="no-anchor">Open-Source</h3>
+            <p>
+                Quartz.LightCore is free to use, improve, contribute and distribute.
+                Source code is available on <a href="https://github.com/cake-contrib/Quartz.LightCore">GitHub</a> under MIT license.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container main-page">
+    <div class="row slideanim">
+        <div class="col-sm-12">
+            <div class="text-center">
+            <span class="glyphicon glyphicon-road logo-small"></span>
+            <h3>How to use it?</h3>
+            </div>
+    <p>
+        Quartz.LightCore supplies Quartz with a new JobFacotry that 
+        will resolve the needed jobs using LightCore.
+    </p>
+    <p>
+        Simply start out by configuring the LightCore-container as usual, then
+        use the <i>UseLightCoreResolverJobFacotry</i>-extension of the scheduler and supply the LightCore-container.
+    </p>
+    <p>
+        This will set up the Quartz scheduler to use the new JobFacotry and resolve new jobs using LightCore.
+    </p>
+
+    <h4>Example:</h4>
+    <pre><code>
+// setup LightCore
+var builder = new ContainerBuilder();
+/* some fancy setup here */
+var container = builder.Build();
+
+// setup Quartz
+var scheduler = await new StdSchedulerFactory().GetScheduler().UseLightCoreResolverJobFacotry(container);
+scheduler.ScheduleJob(
+	JobBuilder.Create<ThisJobWillBeInstanciatedUsingLightCore>().Build(),
+	TriggerBuilder.Create().StartNow().Build());
+    </code></pre>
+        </div>
+    </div>
+</div>

@@ -16,4 +16,13 @@ BuildParameters.PrintParameters(Context);
 
 ToolSettings.SetToolSettings(context: Context);
 
+// copy logo into docs
+Task("copy-res-logo")
+  .IsDependeeOf("Publish-Documentation")
+  .IsDependeeOf("Preview-Documentation")
+  .IsDependeeOf("Force-Publish-Documentation")
+  .Does(() => {
+    CopyDirectory(Directory("res"), Directory("docs/input/res"));
+});
+
 Build.RunDotNetCore();
