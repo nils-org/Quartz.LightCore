@@ -13,7 +13,7 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - uses: actions/checkout@v2.3.3
@@ -31,7 +31,7 @@ jobs:
           script-path: recipe.cake
           target: CI
           verbosity: Diagnostic
-          cake-version: 0.38.4
+          cake-version: 0.38.5
           cake-bootstrap: true
       # currently, Cake.Recipe does not upload artifacts when run on gh-actions
       - name: Upload Issues
