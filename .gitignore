@@ -6,3 +6,5 @@ dist/
 
 # wyam
 /config.wyam.*
+tools/
+/BuildArtifacts

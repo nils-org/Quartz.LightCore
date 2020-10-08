@@ -4,8 +4,6 @@
     <PackageId>Quartz.LightCore</PackageId>
   </PropertyGroup>
   <PropertyGroup>
-    <OutputPath>..\..\bin\</OutputPath>
-    <DocumentationFile>..\..\bin\Quartz.LightCore.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <StartYear>2019</StartYear>
     <EndYear>$([System.DateTime]::Today.Year)</EndYear>
