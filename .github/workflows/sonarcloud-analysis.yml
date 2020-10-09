@@ -1,0 +1,44 @@
+name: "SonarCloud"
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    # If this run was triggered by a pull request event, then checkout
+    # the head of the pull request instead of the merge commit.
+    - run: git checkout HEAD^2
+      if: ${{ github.event_name == 'pull_request' }}
+
+    - name: Cache Tools
+      uses: actions/cache@v2
+      with:
+        path: tools
+        key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
+
+    - name: Build project
+      uses: cake-build/cake-action@v1
+      with:
+        script-path: recipe.cake
+        verbosity: Diagnostic
+        cake-version: 0.38.5
+        cake-bootstrap: true
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
