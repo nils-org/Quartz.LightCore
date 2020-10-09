@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<id>http://nils-org.github.io/Quartz.LightCore</id>
+	<title>Quartz.LightCore</title>
+	<link rel="self" href="http://nils-org.github.io/Quartz.LightCore" />
+	<rights>2020</rights>
+	<updated>2020-10-09T05:21:21Z</updated>
+</feed>
