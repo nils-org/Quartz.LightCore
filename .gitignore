@@ -8,3 +8,4 @@ dist/
 /config.wyam.*
 tools/
 /BuildArtifacts
+.history/
