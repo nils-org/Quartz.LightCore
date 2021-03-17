@@ -3,8 +3,6 @@ name: "SonarCloud"
 on:
   push:
     branches: [develop, main]
-  pull_request:
-    branches: [develop, main]
   workflow_dispatch:
 
 jobs:
@@ -59,5 +57,5 @@ jobs:
       shell: powershell
       run: |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"nils-org_Quartz.LightCore" /o:"nils-org" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        .\build.ps1
+        .\build.ps1 --target=DotNetCore-Build
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
