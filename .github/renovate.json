@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["cake.tool"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["Quartz"],
+      "allowedVersions": "/^[0-9]+\\.0\\.0$/"
+    },
+    {
+      "matchDatasources": ["dotnet"],
+      "labels": [".NET"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "labels": ["github_actions"]
+    }
+  ]
+}
