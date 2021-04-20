@@ -6,7 +6,8 @@
   "packageRules": [
     {
       "matchPackageNames": ["Quartz"],
-      "allowedVersions": "/^[0-9]+\\.0\\.0$/"
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ]
 }
