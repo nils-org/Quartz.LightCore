@@ -1,11 +1,9 @@
 ﻿namespace Quartz.LightCore.Tests
 {
-    using FluentAssertions;
+    using Shouldly;
 
     using global::LightCore;
-
-    using NUnit.Framework;
-
+    
     // ReSharper disable once RedundantNameQualifier - collides with SA1135
     using Quartz.Impl;
 
@@ -13,10 +11,11 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    [TestFixture]
+    using Xunit;
+
     public class UnitTest1
     {
-        [TestCase]
+        [Fact]
         public async Task TestMethod1()
         {
             // Arrange
@@ -43,10 +42,10 @@
             {
                 Thread.Sleep(10);
             }
-            diWasCalled.Should().BeTrue();
+            diWasCalled.ShouldBeTrue();
         }
 
-        [TestCase]
+        [Fact]
         public void SyncTestMethod1()
 
         {
@@ -74,7 +73,7 @@
             {
                 Thread.Sleep(10);
             }
-            diWasCalled.Should().BeTrue();
+            diWasCalled.ShouldBeTrue();
         }
 
         private class FakeJob : IJob
