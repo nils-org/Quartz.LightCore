@@ -15,8 +15,6 @@ function Run([string[]]$arguments) {
 
 Run tool, restore
 
-Run cake, recipe.cake, --bootstrap
-
 $arguments = @("cake"; "recipe.cake")
 $arguments += @($args)
 
