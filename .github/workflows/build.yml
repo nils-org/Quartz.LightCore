@@ -17,12 +17,12 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       - name: Fetch all tags and branches
         run: git fetch --prune --unshallow
 
-      - uses: actions/setup-dotnet@v3.0.3
+      - uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a # v3.0.3
         with:
           dotnet-version: |
             5.0.x
@@ -30,13 +30,13 @@ jobs:
             7.0.x
 
       - name: Cache Tools
-        uses: actions/cache@v3
+        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3
         with:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
 
       - name: Build project
-        uses: cake-build/cake-action@v1
+        uses: cake-build/cake-action@a6eb054329257c9e70a6c6bf01747ad6e1d9d52b # v1
         with:
           script-path: recipe.cake
           target: CI
@@ -45,14 +45,14 @@ jobs:
           cake-bootstrap: true
 
       - name: Upload Issues-Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3
         with:
           if-no-files-found: warn
           name: ${{ matrix.os }} issues
           path: BuildArtifacts/report.html
 
       - name: Upload Packages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3
         if: runner.os == 'Windows'
         with:
           if-no-files-found: warn
